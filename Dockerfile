@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN gradle shadowJar --no-daemon && ls -la build/libs/
+RUN gradle shadowJar --no-daemon
+RUN echo "=== Содержимое JAR ===" && jar tf build/libs/Mp-1.0.0.jar | head -30
+RUN echo "=== Полный путь к классу ===" && jar tf build/libs/Mp-1.0.0.jar | grep Bot
 
-CMD ["java", "-jar", "build/libs/Mp-1.0.0.jar"]
+CMD sh -c "jar tf build/libs/Mp-1.0.0.jar | head -30 && java -jar build/libs/Mp-1.0.0.jar"
