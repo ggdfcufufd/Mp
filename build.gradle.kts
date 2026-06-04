@@ -15,7 +15,7 @@ dependencies {
     implementation("org.telegram:telegrambots-meta:6.9.7.1")
 }
 
-tasks.jar {
+tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = "org.example.Bot"
     }
@@ -24,4 +24,6 @@ tasks.jar {
 tasks.shadowJar {
     archiveClassifier.set("")
     mergeServiceFiles()
+    from(sourceSets.main.get().output)
+    configurations = listOf(project.configurations.runtimeClasspath.get())
 }
