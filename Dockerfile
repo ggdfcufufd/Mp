@@ -6,4 +6,4 @@ COPY . .
 
 RUN gradle shadowJar --no-daemon
 
-CMD sh -c "java -jar build/libs/*-all.jar"
+CMD ["java", "-jar", "build/libs/Mp-1.0.0.jar"]
