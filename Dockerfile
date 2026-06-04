@@ -1,11 +1,9 @@
-FROM eclipse-temurin:21-jdk
+FROM gradle:8.12-jdk21
 
 WORKDIR /app
 
-# Копируем файлы
 COPY . .
 
-# Даём права и запускаем сборку через Gradle wrapper
-RUN chmod +x gradlew && ./gradlew shadowJar --no-daemon
+RUN gradle shadowJar --no-daemon
 
 CMD ["java", "-jar", "build/libs/Mp-1.0.0-all.jar"]
